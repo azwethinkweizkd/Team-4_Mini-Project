@@ -1,3 +1,15 @@
-let gov = fetch('https://www.loc.gov/search/?q=&fo=json')
+function searchCongress(query) {
+  const url = `https://www.loc.gov/search/?q=${query}&fo=json`;
+  fetch(url)
+    .then((response) => response.json())
+    .then((jsonData) => {
+      console.log(jsonData);
+    });
+}
 
-console.log(gov)
+window.onload = () => {
+    const searchFieldElement = document.getElementById("searchField");
+    searchFieldElement.onkeyup = (event) => {
+        searchCongress(searchFieldElement.value);
+    };
+}
